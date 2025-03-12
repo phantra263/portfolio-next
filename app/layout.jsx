@@ -20,8 +20,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${jetBrainsMono.variable} antialiased`}
+        className={`${jetBrainsMono.variable} antialiased home-hero-glow relative`}
       >
+
+        {/* animation background */}
+        <div className="signup-space">
+          <div className="signup-stars"></div>
+          <div className="signup-stars"></div>
+          <div className="signup-stars"></div>
+          <div className="signup-stars"></div>
+          <div className="signup-stars"></div>
+          <div className="signup-stars"></div>
+        </div>
+
+
         <Header />
         <StairTransition />
         <PageTransition>{children}</PageTransition>

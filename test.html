@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Effect like Bullmonk</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0d0d0d;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .text {
+            font-size: 5rem;
+            font-weight: bold;
+            transition: transform 0.3s ease-out;
+        }
+
+        .hover-area {
+            position: absolute;
+            width: 400px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: transform 0.3s, background 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hover-area"></div>
+        <div class="text">BULLMONK</div>
+    </div>
+
+    <script>
+        const hoverArea = document.querySelector('.hover-area');
+        const text = document.querySelector('.text');
+
+        document.addEventListener('mousemove', (e) => {
+            let x = e.clientX;
+            let y = e.clientY;
+            let centerX = window.innerWidth / 2;
+            let centerY = window.innerHeight / 2;
+            let deltaX = (x - centerX) / 20;
+            let deltaY = (y - centerY) / 20;
+
+            gsap.to(text, { x: deltaX, y: deltaY, duration: 0.5, ease: "power2.out" });
+            gsap.to(hoverArea, { x: x, y: y, duration: 0.3 });
+        });
+
+        hoverArea.addEventListener('mouseenter', () => {
+            gsap.to(hoverArea, { scale: 1.1, background: 'rgba(255, 255, 255, 0.2)', duration: 0.3 });
+        });
+
+        hoverArea.addEventListener('mouseleave', () => {
+            gsap.to(hoverArea, { scale: 1, background: 'rgba(255, 255, 255, 0.1)', duration: 0.3 });
+        });
+    </script>
+</body>
+
+</html>
